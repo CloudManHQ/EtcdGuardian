@@ -1,0 +1,114 @@
+apiVersion: etcdguardian.io/v1alpha1
+kind: EtcdRestore
+metadata:
+  name: sample-restore
+  namespace: etcd-guardian-system
+spec:
+  # Reference to the backup to restore from
+  backupName: sample-full-backup
+  
+  # OR directly specify snapshot location:
+  # snapshotLocation: "s3://my-bucket/backups/snapshot-20260112.db"
+  
+  # Restore mode: Full, Incremental, or PointInTime
+  restoreMode: Full
+  
+  # Optional: Target revision for point-in-time restore
+  # targetRevision: 1234567
+  
+  # Target etcd cluster configuration
+  etcdCluster:
+    endpoints:
+      - https://etcd-0:2379
+      - https://etcd-1:2379
+      - https://etcd-2:2379
+    dataDir: /var/lib/etcd
+    # Optional: TLS certificates
+    # certificates:
+    #   ca: etcd-ca-cert
+    #   cert: etcd-client-cert
+    #   key: etcd-client-key
+  
+  # Whether to quiesce cluster before restore (default: true)
+  quiesceCluster: true
+  
+  # Optional: Pre-restore hooks
+  # preRestoreHooks:
+  #   - name: stop-apiserver
+  #     type: Exec
+  #     exec:
+  #       command: ["systemctl", "stop", "kube-apiserver"]
+  
+  # Optional: Post-restore hooks
+  # postRestoreHooks:
+  #   - name: start-apiserver
+  #     type: Exec
+  #     exec:
+  #       command: ["systemctl", "start", "kube-apiserver"]
+  
+  # Optional: Version compatibility settings
+  versionCompatibility:
+    check: true
+    allowMismatch: false
+  
+  # Optional: Namespace filtering for multi-tenant restore
+  # namespaceFilter:
+  #   - team-a
+  #   - team-b
+apiVersion: etcdguardian.io/v1alpha1
+kind: EtcdRestore
+metadata:
+  name: sample-restore
+  namespace: etcd-guardian-system
+spec:
+  # Reference to the backup to restore from
+  backupName: sample-full-backup
+  
+  # OR directly specify snapshot location:
+  # snapshotLocation: "s3://my-bucket/backups/snapshot-20260112.db"
+  
+  # Restore mode: Full, Incremental, or PointInTime
+  restoreMode: Full
+  
+  # Optional: Target revision for point-in-time restore
+  # targetRevision: 1234567
+  
+  # Target etcd cluster configuration
+  etcdCluster:
+    endpoints:
+      - https://etcd-0:2379
+      - https://etcd-1:2379
+      - https://etcd-2:2379
+    dataDir: /var/lib/etcd
+    # Optional: TLS certificates
+    # certificates:
+    #   ca: etcd-ca-cert
+    #   cert: etcd-client-cert
+    #   key: etcd-client-key
+  
+  # Whether to quiesce cluster before restore (default: true)
+  quiesceCluster: true
+  
+  # Optional: Pre-restore hooks
+  # preRestoreHooks:
+  #   - name: stop-apiserver
+  #     type: Exec
+  #     exec:
+  #       command: ["systemctl", "stop", "kube-apiserver"]
+  
+  # Optional: Post-restore hooks
+  # postRestoreHooks:
+  #   - name: start-apiserver
+  #     type: Exec
+  #     exec:
+  #       command: ["systemctl", "start", "kube-apiserver"]
+  
+  # Optional: Version compatibility settings
+  versionCompatibility:
+    check: true
+    allowMismatch: false
+  
+  # Optional: Namespace filtering for multi-tenant restore
+  # namespaceFilter:
+  #   - team-a
+  #   - team-b

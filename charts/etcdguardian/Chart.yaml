@@ -1,0 +1,38 @@
+apiVersion: v2
+name: etcdguardian
+description: A Kubernetes Operator for comprehensive etcd backup and disaster recovery
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - etcd
+  - backup
+  - disaster-recovery
+  - operator
+  - kubernetes
+home: https://github.com/etcdguardian/etcdguardian
+sources:
+  - https://github.com/etcdguardian/etcdguardian
+maintainers:
+  - name: EtcdGuardian Team
+    email: maintainers@etcdguardian.io
+icon: https://etcdguardian.io/icon.png
+apiVersion: v2
+name: etcdguardian
+description: A Kubernetes Operator for comprehensive etcd backup and disaster recovery
+type: application
+version: 0.1.0
+appVersion: "0.1.0"
+keywords:
+  - etcd
+  - backup
+  - disaster-recovery
+  - operator
+  - kubernetes
+home: https://github.com/etcdguardian/etcdguardian
+sources:
+  - https://github.com/etcdguardian/etcdguardian
+maintainers:
+  - name: EtcdGuardian Team
+    email: maintainers@etcdguardian.io
+icon: https://etcdguardian.io/icon.png

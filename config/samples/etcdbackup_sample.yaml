@@ -1,0 +1,120 @@
+apiVersion: etcdguardian.io/v1alpha1
+kind: EtcdBackup
+metadata:
+  name: sample-full-backup
+  namespace: etcd-guardian-system
+spec:
+  # Backup mode: Full or Incremental
+  backupMode: Full
+  
+  # Optional: Schedule for periodic backups (cron format)
+  # schedule: "0 2 * * *"  # Daily at 2 AM
+  
+  # Storage configuration
+  storageLocation:
+    provider: S3  # Options: S3, OSS, GCS, Azure
+    bucket: my-etcd-backups
+    region: us-east-1
+    # prefix: "backups/production"  # Optional path prefix
+    # endpoint: "https://minio.example.com"  # Optional for MinIO
+    credentialsSecret: s3-credentials
+  
+  # Optional: Encryption settings
+  # encryption:
+  #   enabled: true
+  #   kmsKeyID: "arn:aws:kms:us-east-1:123456789:key/abc-def"
+  #   # OR for client-side encryption:
+  #   # encryptionSecret: my-encryption-key
+  
+  # Optional: Retention policy
+  retentionPolicy:
+    maxBackups: 30
+    maxAge: 720h  # 30 days
+  
+  # Optional: Validation settings
+  validation:
+    enabled: true
+    consistencyCheck: true
+  
+  # Optional: Velero integration
+  # veleroIntegration:
+  #   enabled: true
+  #   backupName: velero-backup-name
+  
+  # Optional: Multi-tenant namespace filtering
+  # namespaceSelector:
+  #   matchLabels:
+  #     team: team-a
+  
+  # Optional: Hooks
+  # hooks:
+  #   preBackup:
+  #     - name: stop-app
+  #       type: Exec
+  #       exec:
+  #         command: ["kubectl", "scale", "deployment", "myapp", "--replicas=0"]
+  #   postBackup:
+  #     - name: start-app
+  #       type: Exec
+  #       exec:
+  #         command: ["kubectl", "scale", "deployment", "myapp", "--replicas=3"]
+apiVersion: etcdguardian.io/v1alpha1
+kind: EtcdBackup
+metadata:
+  name: sample-full-backup
+  namespace: etcd-guardian-system
+spec:
+  # Backup mode: Full or Incremental
+  backupMode: Full
+  
+  # Optional: Schedule for periodic backups (cron format)
+  # schedule: "0 2 * * *"  # Daily at 2 AM
+  
+  # Storage configuration
+  storageLocation:
+    provider: S3  # Options: S3, OSS, GCS, Azure
+    bucket: my-etcd-backups
+    region: us-east-1
+    # prefix: "backups/production"  # Optional path prefix
+    # endpoint: "https://minio.example.com"  # Optional for MinIO
+    credentialsSecret: s3-credentials
+  
+  # Optional: Encryption settings
+  # encryption:
+  #   enabled: true
+  #   kmsKeyID: "arn:aws:kms:us-east-1:123456789:key/abc-def"
+  #   # OR for client-side encryption:
+  #   # encryptionSecret: my-encryption-key
+  
+  # Optional: Retention policy
+  retentionPolicy:
+    maxBackups: 30
+    maxAge: 720h  # 30 days
+  
+  # Optional: Validation settings
+  validation:
+    enabled: true
+    consistencyCheck: true
+  
+  # Optional: Velero integration
+  # veleroIntegration:
+  #   enabled: true
+  #   backupName: velero-backup-name
+  
+  # Optional: Multi-tenant namespace filtering
+  # namespaceSelector:
+  #   matchLabels:
+  #     team: team-a
+  
+  # Optional: Hooks
+  # hooks:
+  #   preBackup:
+  #     - name: stop-app
+  #       type: Exec
+  #       exec:
+  #         command: ["kubectl", "scale", "deployment", "myapp", "--replicas=0"]
+  #   postBackup:
+  #     - name: start-app
+  #       type: Exec
+  #       exec:
+  #         command: ["kubectl", "scale", "deployment", "myapp", "--replicas=3"]

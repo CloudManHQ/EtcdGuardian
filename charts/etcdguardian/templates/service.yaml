@@ -1,0 +1,36 @@
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "etcdguardian.fullname" . }}-metrics
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "etcdguardian.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+  - name: metrics
+    port: {{ .Values.metrics.port }}
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    {{- include "etcdguardian.selectorLabels" . | nindent 4 }}
+{{- end }}
+{{- if .Values.metrics.enabled }}
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "etcdguardian.fullname" . }}-metrics
+  namespace: {{ .Release.Namespace }}
+  labels:
+    {{- include "etcdguardian.labels" . | nindent 4 }}
+spec:
+  type: ClusterIP
+  ports:
+  - name: metrics
+    port: {{ .Values.metrics.port }}
+    targetPort: metrics
+    protocol: TCP
+  selector:
+    {{- include "etcdguardian.selectorLabels" . | nindent 4 }}
+{{- end }}

@@ -1,0 +1,334 @@
+# Default values for etcdguardian
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Operator image configuration
+image:
+  repository: etcdguardian/operator
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# Number of operator replicas (set to 2+ for high availability)
+replicas: 1
+
+# Service account configuration
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# Pod annotations
+podAnnotations: {}
+
+# Pod security context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+
+# Container security context
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+
+# Resource limits and requests
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity rules
+affinity: {}
+
+# Metrics configuration
+metrics:
+  enabled: true
+  port: 8080
+  serviceMonitor:
+    enabled: false
+    interval: 30s
+
+# Health probe configuration
+healthProbe:
+  port: 8081
+
+# Webhook configuration
+webhook:
+  enabled: true
+  port: 9443
+
+# Leader election
+leaderElection:
+  enabled: false
+
+# Default etcd configuration
+etcd:
+  # Default etcd endpoints (can be overridden in CR)
+  endpoints: []
+  # Whether to create default certificate secrets
+  certificates:
+    create: false
+    # Existing secret names if create is false
+    caSecret: ""
+    certSecret: ""
+    keySecret: ""
+
+# Storage configuration
+storage:
+  # Default storage provider
+  defaultProvider: s3
+  
+  # S3 configuration
+  s3:
+    enabled: true
+    bucket: ""
+    region: us-east-1
+    endpoint: ""
+  
+  # Alibaba Cloud OSS configuration
+  oss:
+    enabled: false
+    bucket: ""
+    region: cn-hangzhou
+    endpoint: ""
+    # Use RAM role for authentication
+    useRAMRole: false
+  
+  # GCS configuration
+  gcs:
+    enabled: false
+    bucket: ""
+    region: us-central1
+  
+  # Azure Blob configuration
+  azure:
+    enabled: false
+    storageAccount: ""
+    container: ""
+
+# Velero integration
+velero:
+  integration:
+    enabled: false
+    namespace: velero
+
+# Monitoring and alerting
+monitoring:
+  prometheus:
+    enabled: true
+  alerts:
+    enabled: false
+    slack:
+      webhookUrl: ""
+    email:
+      enabled: false
+      smtpServer: ""
+      from: ""
+      to: ""
+
+# AI optimization (experimental)
+aiOptimization:
+  enabled: false
+  # Resources for AI model
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+# RBAC configuration
+rbac:
+  create: true
+  # Enable cluster-wide permissions
+  clusterWide: true
+
+# CRD installation
+crds:
+  # Whether to install CRDs (disable if managing CRDs separately)
+  install: true
+  # Whether to keep CRDs on helm uninstall
+  keep: true
+# Default values for etcdguardian
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# Operator image configuration
+image:
+  repository: etcdguardian/operator
+  pullPolicy: IfNotPresent
+  tag: "latest"
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+# Number of operator replicas (set to 2+ for high availability)
+replicas: 1
+
+# Service account configuration
+serviceAccount:
+  create: true
+  annotations: {}
+  name: ""
+
+# Pod annotations
+podAnnotations: {}
+
+# Pod security context
+podSecurityContext:
+  runAsNonRoot: true
+  runAsUser: 65532
+
+# Container security context
+securityContext:
+  allowPrivilegeEscalation: false
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+
+# Resource limits and requests
+resources:
+  limits:
+    cpu: 500m
+    memory: 512Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+
+# Node selector
+nodeSelector: {}
+
+# Tolerations
+tolerations: []
+
+# Affinity rules
+affinity: {}
+
+# Metrics configuration
+metrics:
+  enabled: true
+  port: 8080
+  serviceMonitor:
+    enabled: false
+    interval: 30s
+
+# Health probe configuration
+healthProbe:
+  port: 8081
+
+# Webhook configuration
+webhook:
+  enabled: true
+  port: 9443
+
+# Leader election
+leaderElection:
+  enabled: false
+
+# Default etcd configuration
+etcd:
+  # Default etcd endpoints (can be overridden in CR)
+  endpoints: []
+  # Whether to create default certificate secrets
+  certificates:
+    create: false
+    # Existing secret names if create is false
+    caSecret: ""
+    certSecret: ""
+    keySecret: ""
+
+# Storage configuration
+storage:
+  # Default storage provider
+  defaultProvider: s3
+  
+  # S3 configuration
+  s3:
+    enabled: true
+    bucket: ""
+    region: us-east-1
+    endpoint: ""
+  
+  # Alibaba Cloud OSS configuration
+  oss:
+    enabled: false
+    bucket: ""
+    region: cn-hangzhou
+    endpoint: ""
+    # Use RAM role for authentication
+    useRAMRole: false
+  
+  # GCS configuration
+  gcs:
+    enabled: false
+    bucket: ""
+    region: us-central1
+  
+  # Azure Blob configuration
+  azure:
+    enabled: false
+    storageAccount: ""
+    container: ""
+
+# Velero integration
+velero:
+  integration:
+    enabled: false
+    namespace: velero
+
+# Monitoring and alerting
+monitoring:
+  prometheus:
+    enabled: true
+  alerts:
+    enabled: false
+    slack:
+      webhookUrl: ""
+    email:
+      enabled: false
+      smtpServer: ""
+      from: ""
+      to: ""
+
+# AI optimization (experimental)
+aiOptimization:
+  enabled: false
+  # Resources for AI model
+  resources:
+    limits:
+      cpu: 200m
+      memory: 256Mi
+    requests:
+      cpu: 50m
+      memory: 64Mi
+
+# RBAC configuration
+rbac:
+  create: true
+  # Enable cluster-wide permissions
+  clusterWide: true
+
+# CRD installation
+crds:
+  # Whether to install CRDs (disable if managing CRDs separately)
+  install: true
+  # Whether to keep CRDs on helm uninstall
+  keep: true
